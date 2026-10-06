@@ -1,0 +1,46 @@
+.page {
+  padding: 56px 6%;
+  text-align: center;
+}
+
+  .page h1 {
+    color: var(--maroon);
+    font-size: 2.4rem;
+  }
+
+.sub {
+  color: #777;
+  margin: 6px 0 28px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+  .chips button {
+    padding: 8px 22px;
+    border-radius: 24px;
+    border: 1.5px solid var(--gold);
+    background: transparent;
+    color: var(--maroon);
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+    .chips button:hover, .chips button.active {
+      background: var(--maroon);
+      color: var(--gold-light);
+      border-color: var(--maroon);
+    }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  text-align: left;
+}

@@ -1,0 +1,219 @@
+<!-- HERO SLIDER -->
+<section class="hero">
+  <div class="track" [style.transform]="transform"
+       [style.transition]="animate ? 'transform 0.7s ease' : 'none'"
+       (transitionend)="onEnd($event)">
+    @for (s of track; track $index) {
+    <div class="s" [style.background]="s.bg">
+      @if (s.image) {
+      <img class="bg" [src]="s.image" [alt]="s.title" (error)="s.image = ''">
+      <div class="shade"></div>
+      } @else {
+      <app-symbol class="art" [name]="s.symbol"></app-symbol>
+      }
+      <div class="cap">
+        <p class="tg">{{ s.tag }}</p>
+        <h1>{{ s.title }}</h1>
+        <p class="d">{{ s.text }}</p>
+        <button class="btn" (click)="scrollToShop()">{{ s.btn }}</button>
+      </div>
+    </div>
+    }
+  </div>
+
+  @for (s of sparks; track $index) {
+  <span class="sp" [style.left.%]="s.left" [style.width.px]="s.size" [style.height.px]="s.size"
+        [style.animation-delay.s]="s.delay" [style.animation-duration.s]="s.dur"></span>
+  }
+
+  <button class="ar left" (click)="prev(); startAuto()" aria-label="Previous">❮</button>
+  <button class="ar right" (click)="next(); startAuto()" aria-label="Next">❯</button>
+  <div class="dots">
+    @for (s of slides; track $index; let i = $index) {
+    <i [class.on]="i === dot" (click)="goTo(i)"></i>
+    }
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="sec">
+  <h2 class="reveal">Shop by Category</h2>
+  <div class="ln"></div>
+  <div class="tiles">
+    @for (c of categories; track c.name; let i = $index) {
+    <div class="tile reveal" [style.--a]="c.a" [style.--b]="c.b"
+         [style.animation-delay.ms]="i * 90" (click)="pick(c.name)">
+      @if (c.image) {
+      <img class="tphoto" [src]="c.image" [alt]="c.name" (error)="c.image = ''">
+      } @else {
+      <app-symbol [name]="c.symbol"></app-symbol>
+      }
+      <span>{{ c.name }}</span>
+    </div>
+    }
+  </div>
+</section>
+
+<!-- VIDEO CARDS -->
+<section class="sec">
+  <h2 class="reveal">Watch Our Jewellery</h2>
+  <div class="ln"></div>
+  <div class="vids">
+    <div class="vc v1 reveal">
+      <span class="lb">LIVE</span>
+      <app-symbol name="diamond"></app-symbol>
+      <p class="vt">Diamond 360° View</p>
+      <div class="pb"><i></i></div>
+    </div>
+    <div class="vc v2 reveal" style="animation-delay: 150ms">
+      <span class="lb">LIVE</span>
+      <app-symbol name="necklace"></app-symbol>
+      <p class="vt">Bridal Necklace Shine</p>
+      <div class="pb"><i></i></div>
+    </div>
+    <div class="vc v3 reveal" style="animation-delay: 300ms">
+      <span class="lb">LIVE</span>
+      <app-symbol name="bangle"></app-symbol>
+      <p class="vt">Gold Bangles Spin</p>
+      <div class="pb"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="sec" id="shop">
+  <h2 class="reveal">Our Collection</h2>
+  <div class="ln"></div>
+  <div class="bar">
+    @for (c of chips; track c) {
+    <button [class.on]="c === cat" (click)="cat = c">{{ c === 'Saved' ? '♥ Saved' : c }}</button>
+    }
+    <input type="text" placeholder="Search jewellery..." (input)="query = $any($event.target).value">
+  </div>
+  <div class="grid">
+    @for (p of filtered; track p.id; let i = $index) {
+    <app-product-card class="pop" [product]="p" [style.animation-delay.ms]="i * 70"></app-product-card>
+    } @empty {
+    <p class="empty">No items found</p>
+    }
+  </div>
+</section>
+
+<!-- BIG VIDEO BANNER -->
+<section class="sec">
+  <h2 class="reveal">Crafted with Care</h2>
+  <div class="ln"></div>
+  <div class="vbig reveal" [class.ps]="paused">
+    <span class="lb">LIVE</span>
+    @if (videoSrc) {
+    <video class="vfile" [src]="videoSrc" autoplay muted loop playsinline></video>
+    } @else {
+    <app-symbol class="r1" name="ring"></app-symbol>
+    <app-symbol class="r2" name="diamond"></app-symbol>
+    <app-symbol class="r3" name="necklace"></app-symbol>
+    }
+    <div class="vtx"><h3>DS Jewellers</h3><p>Where every piece tells a story</p></div>
+    <button class="pp" (click)="togglePause()" aria-label="Play or pause">{{ paused ? '▶' : '❚❚' }}</button>
+    <div class="pb"><i></i></div>
+  </div>
+</section>
+
+<!-- OCCASIONS -->
+<section class="sec">
+  <h2 class="reveal">Jewellery for Every Occasion</h2>
+  <div class="ln"></div>
+  <div class="occ">
+    @for (o of occasions; track o.name; let i = $index) {
+    <div class="oc reveal" [style.--a]="o.a" [style.--b]="o.b"
+         [style.animation-delay.ms]="i * 100" (click)="pick(o.category)">
+      @if (o.image) {
+      <img class="ophoto" [src]="o.image" [alt]="o.name" (error)="o.image = ''">
+      <div class="oshade"></div>
+      } @else {
+      <app-symbol [name]="o.symbol"></app-symbol>
+      }
+      <div class="otxt"><h3>{{ o.name }}</h3><p>{{ o.text }}</p></div>
+    </div>
+    }
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec">
+  <h2 class="reveal">What Customers Say</h2>
+  <div class="ln"></div>
+  <div class="rvs">
+    @for (r of reviews; track r.name; let i = $index) {
+    <div class="rv reveal" [style.animation-delay.ms]="i * 120">
+      <i>★★★★★</i>
+      <p>{{ r.text }}</p>
+      <b>{{ r.name }}</b>
+    </div>
+    }
+  </div>
+  <p class="note">Sample reviews. Real customer reviews will go here.</p>
+</section>
+
+<!-- CALCULATOR -->
+<section class="sec">
+  <h2 class="reveal">Gold Price Calculator</h2>
+  <div class="ln"></div>
+  <div class="calc reveal">
+    <label>
+      Weight (grams)
+      <input type="number" min="0" step="0.1" value="10" (input)="weight = +$any($event.target).value">
+    </label>
+    <label>
+      Purity
+      <select (change)="purity = +$any($event.target).value">
+        <option value="1">24K</option>
+        <option value="0.9167" selected>22K</option>
+        <option value="0.75">18K</option>
+      </select>
+    </label>
+    <label>
+      Today's 24K rate (₹ per gram)
+      <input type="number" min="0" placeholder="Enter today's rate" (input)="rate = +$any($event.target).value">
+    </label>
+    <label>
+      Making charges (%)
+      <input type="number" min="0" value="8" (input)="making = +$any($event.target).value">
+    </label>
+    <div class="res">
+      @if (weight > 0 && rate > 0) {
+      Gold {{ gold | currency:'INR':'symbol':'1.0-0' }} + Making {{ makingAmt | currency:'INR':'symbol':'1.0-0' }}<br>
+      <b>{{ total | currency:'INR':'symbol':'1.0-0' }}</b><br>
+      <small>Estimate only, taxes extra</small>
+      } @else {
+      Enter today's rate to see the estimate
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <h2 class="reveal">Questions &amp; Answers</h2>
+  <div class="ln"></div>
+  <details class="reveal">
+    <summary>How can I enquire about a design?</summary>
+    <p>Tap "Enquire on WhatsApp" on any product, or call us on +91 88741 96809.</p>
+  </details>
+  <details class="reveal">
+    <summary>Where is the shop?</summary>
+    <p>We are in Hazratganj, Lucknow, Uttar Pradesh. Use the Visit Us page for directions.</p>
+  </details>
+  <details class="reveal">
+    <summary>How does the price calculator work?</summary>
+    <p>Enter the weight, purity, today's 24K rate and making charges to get an estimate. Final price is confirmed at the shop.</p>
+  </details>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="cta reveal">
+  <h2>Visit DS Jewellers in Lucknow</h2>
+  <p>See the full collection in person, or talk to us right now.</p>
+  <a href="tel:+918874196809" class="btn">📞 Call Now</a>
+  <a href="https://wa.me/918874196809" target="_blank" rel="noopener" class="btn o">WhatsApp</a>
+  <a routerLink="/location" class="btn o">Get Directions</a>
+</section>

@@ -1,0 +1,45 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 6%;
+  background: var(--maroon-dark);
+  border-bottom: 2px solid var(--gold);
+}
+
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+}
+
+  nav a {
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s;
+  }
+
+    nav a:hover, nav a.active {
+      color: #fff;
+      border-bottom-color: var(--gold);
+    }
+.count {
+  background: var(--gold);
+  color: var(--maroon-dark);
+  border-radius: 10px;
+  padding: 0 7px;
+  font-size: 0.8rem;
+  margin-left: 2px;
+}

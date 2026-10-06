@@ -1,0 +1,9 @@
+<header class="nav">
+  <a routerLink="/" class="brand">◆ {{ shopName }}</a>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/" fragment="shop">Collection</a>
+    <a routerLink="/location" routerLinkActive="active">Visit Us</a>
+    <a routerLink="/" fragment="shop">♥ Saved <span class="count">{{ wishlist.count() }}</span></a>
+  </nav>
+</header>

@@ -1,0 +1,13 @@
+<section class="page">
+  <h1>Visit DS Jewellers</h1>
+  <div class="wrap">
+    <div class="info">
+      <h2>Our Shop</h2>
+      <p><span class="label">Address</span>{{ address }}</p>
+      <p><span class="label">Timings</span>{{ timings }}</p>
+      <p><span class="label">Phone</span>{{ phone }}</p>
+      <a class="call" href="tel:+918874196809">Call Now</a>
+    </div>
+    <iframe [src]="mapUrl" loading="lazy" title="DS Jewellers location"></iframe>
+  </div>
+</section>

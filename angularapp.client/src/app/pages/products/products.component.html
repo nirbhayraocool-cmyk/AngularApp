@@ -1,0 +1,16 @@
+<section class="page">
+  <h1>Our Collection</h1>
+  <p class="sub">Choose a category to explore our designs</p>
+
+  <div class="chips">
+    @for (c of categories; track c) {
+    <button [class.active]="c === selected" (click)="selected = c">{{ c }}</button>
+    }
+  </div>
+
+  <div class="grid">
+    @for (p of filtered; track p.id) {
+    <app-product-card [product]="p"></app-product-card>
+    }
+  </div>
+</section>

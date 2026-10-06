@@ -1,0 +1,53 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7e7b0" />
+      <stop offset=".5" stop-color="#d4a94a" />
+      <stop offset="1" stop-color="#8a6a20" />
+    </linearGradient>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" />
+      <stop offset="1" stop-color="#9fd3ff" />
+    </linearGradient>
+
+    <symbol id="ring" viewBox="0 0 100 100">
+      <circle cx="50" cy="64" r="24" fill="none" stroke="url(#g)" stroke-width="9" />
+      <path d="M50 8l14 14-14 18-14-18z" fill="url(#d)" stroke="#fff" stroke-width="1.5" />
+      <path d="M36 22h28M50 8v32" stroke="#fff" stroke-opacity=".6" fill="none" />
+    </symbol>
+    <symbol id="necklace" viewBox="0 0 100 100">
+      <path d="M8 12Q50 100 92 12" fill="none" stroke="url(#g)" stroke-width="4" stroke-dasharray="1 5" stroke-linecap="round" />
+      <path d="M8 12Q50 100 92 12" fill="none" stroke="url(#g)" stroke-width="1.5" />
+      <path d="M50 66l9 9-9 15-9-15z" fill="url(#d)" stroke="url(#g)" stroke-width="2" />
+    </symbol>
+    <symbol id="earring" viewBox="0 0 100 100">
+      <g id="e1">
+        <circle cx="26" cy="14" r="5" fill="url(#g)" />
+        <path d="M26 19v14" stroke="url(#g)" stroke-width="2" />
+        <path d="M26 33c-12 12-12 34 0 42 12-8 12-30 0-42z" fill="url(#g)" />
+        <circle cx="26" cy="56" r="5" fill="url(#d)" />
+      </g>
+      <use href="#e1" x="46" />
+    </symbol>
+    <symbol id="bangle" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="55" rx="40" ry="34" fill="none" stroke="url(#g)" stroke-width="10" />
+      <ellipse cx="50" cy="55" rx="40" ry="34" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="2" stroke-dasharray="3 6" />
+    </symbol>
+    <symbol id="diamond" viewBox="0 0 100 100">
+      <path d="M20 30h60l14 18-44 46L6 48z" fill="url(#d)" stroke="#fff" stroke-width="2" />
+      <path d="M6 48h88M36 30l-6 18 20 46 20-46-6-18M30 48l20-18 20 18" fill="none" stroke="#7fb8e6" stroke-width="1.5" />
+    </symbol>
+    <symbol id="pendant" viewBox="0 0 100 100">
+      <path d="M20 6Q50 46 80 6" fill="none" stroke="url(#g)" stroke-width="2.5" />
+      <circle cx="50" cy="64" r="24" fill="url(#g)" />
+      <circle cx="50" cy="64" r="16" fill="#5a0f1f" />
+      <path d="M50 52l8 12-8 12-8-12z" fill="url(#d)" />
+    </symbol>
+  </defs>
+</svg>
+
+<app-navbar></app-navbar>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>

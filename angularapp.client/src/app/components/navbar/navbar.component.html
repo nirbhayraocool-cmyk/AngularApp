@@ -1,6 +1,7 @@
-<header class="nav">
-  <a routerLink="/" class="brand">◆ {{ shopName }}</a>
-  <nav>
+<header class="nav" [class.open]="open">
+  <a routerLink="/" class="brand" (click)="close()">◆ {{ shopName }}</a>
+  <button class="mb" (click)="toggle()" aria-label="Menu">{{ open ? '✕' : '☰' }}</button>
+  <nav (click)="close()">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="/" fragment="shop">Collection</a>
     <a routerLink="/location" routerLinkActive="active">Visit Us</a>

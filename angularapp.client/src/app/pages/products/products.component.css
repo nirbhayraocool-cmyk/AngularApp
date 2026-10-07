@@ -44,3 +44,17 @@
   gap: 24px;
   text-align: left;
 }
+@media (max-width: 600px) {
+  .page {
+    padding: 28px 4%;
+  }
+
+    .page h1 {
+      font-size: 1.8rem;
+    }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}

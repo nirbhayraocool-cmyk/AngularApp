@@ -809,3 +809,343 @@ details p {
     min-height: 220px;
   }
 }
+/* ---------- Occasions slider ---------- */
+.ovw {
+  position: relative;
+}
+
+.ov {
+  overflow: hidden;
+  margin: 0 -7px;
+}
+
+.ot {
+  display: flex;
+}
+
+.os {
+  flex: 0 0 calc(100% / var(--per, 3));
+  padding: 0 7px;
+}
+
+  .os .oc {
+    height: 240px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+    .os .oc app-symbol {
+      position: absolute;
+      right: 12px;
+      top: 14px;
+      width: 120px;
+    }
+
+.oar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: rgba(61, 9, 20, 0.75);
+  color: var(--gold-light);
+  cursor: pointer;
+}
+
+  .oar:hover {
+    background: var(--gold);
+    color: var(--maroon-dark);
+  }
+
+  .oar.left {
+    left: -8px;
+  }
+
+  .oar.right {
+    right: -8px;
+  }
+
+.odots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+  .odots i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+    .odots i.on {
+      width: 26px;
+      border-radius: 6px;
+      background: var(--gold);
+    }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  .oar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    height: 56vh;
+    min-height: 360px;
+  }
+
+  .s {
+    padding: 0 6%;
+  }
+
+  .cap {
+    max-width: 100%;
+  }
+
+    .cap h1 {
+      font-size: 2rem;
+    }
+
+  .d {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+
+  .s app-symbol.art {
+    height: 70%;
+    right: -12%;
+  }
+
+  .btn {
+    padding: 10px 22px;
+  }
+
+  .sec {
+    padding: 24px 4%;
+  }
+
+    .sec h2 {
+      font-size: 1.5rem;
+    }
+
+  .ln {
+    margin-bottom: 16px;
+  }
+
+  .tiles {
+    gap: 10px;
+  }
+
+  .tile span {
+    font-size: 0.95rem;
+  }
+
+  .vids {
+    grid-template-columns: 1fr;
+  }
+
+  .bar button {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+
+  .bar input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .vbig {
+    height: 56vw;
+    min-height: 220px;
+  }
+
+  .os .oc {
+    height: 200px;
+  }
+
+    .os .oc app-symbol {
+      width: 96px;
+    }
+
+  .calc input, .calc select {
+    font-size: 16px;
+  }
+
+  .cta h2 {
+    font-size: 1.6rem;
+  }
+
+/*  .cta .btn {
+    display: block;
+    margin: 8px auto;
+    max-width: 300px;
+  }*/
+
+  .dots i, .odots i {
+    width: 11px;
+    height: 11px;
+  }
+
+    .dots i.on, .odots i.on {
+      width: 28px;
+    }
+
+  .reveal.show {
+    animation-duration: 0.5s;
+  }
+}
+/* ---------- CTA buttons ---------- */
+.cta-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+  .cta-btns .btn {
+    margin: 0;
+  }
+
+@media (max-width: 600px) {
+  .cta-btns .btn {
+    flex: 1 1 140px;
+    max-width: 190px;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+
+    .cta-btns .btn.wide {
+      flex-basis: 100%;
+      max-width: 300px;
+    }
+}
+/* ---------- Asli video cards ---------- */
+.vc {
+  cursor: pointer;
+}
+
+  .vc:has(.vfile)::after {
+    display: none;
+  }
+
+  .vc:has(.vfile)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+    z-index: 1;
+    pointer-events: none;
+  }
+
+.vt {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+/* ---------- Video gallery (Swiper + GLightbox) ---------- */
+.vswiper {
+  --swiper-theme-color: var(--gold);
+  --swiper-navigation-color: var(--gold-light);
+  --swiper-pagination-color: var(--gold);
+  --swiper-navigation-size: 28px;
+  padding: 14px 0 44px;
+}
+
+swiper-slide.vs {
+  width: min(72%, 400px);
+}
+
+.vs .vc {
+  width: 100%;
+  filter: brightness(0.65);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  transition: filter 0.4s, box-shadow 0.4s;
+}
+
+swiper-slide.swiper-slide-active .vc {
+  filter: none;
+  box-shadow: 0 18px 44px rgba(201, 162, 75, 0.45);
+}
+
+.vc.v2 {
+  background: radial-gradient(circle at 50% 42%, #7a4a12, #1e1005);
+}
+
+.vc.v3 {
+  background: radial-gradient(circle at 50% 42%, #12766d, #041c1c);
+}
+
+.play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+  .play span {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: rgba(201, 162, 75, 0.92);
+    color: var(--maroon-dark);
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    padding-left: 4px;
+    animation: pulse 2s infinite;
+  }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(201, 162, 75, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0);
+  }
+}
+
+.hint {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  swiper-slide.vs {
+    width: 78%;
+  }
+
+  .play span {
+    width: 52px;
+    height: 52px;
+  }
+
+  swiper-container::part(button-prev), swiper-container::part(button-next) {
+    display: none;
+  }
+}

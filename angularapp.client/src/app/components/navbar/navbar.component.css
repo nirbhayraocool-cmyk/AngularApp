@@ -35,6 +35,7 @@ nav {
       color: #fff;
       border-bottom-color: var(--gold);
     }
+
 .count {
   background: var(--gold);
   color: var(--maroon-dark);
@@ -42,4 +43,56 @@ nav {
   padding: 0 7px;
   font-size: 0.8rem;
   margin-left: 2px;
+}
+
+.mb {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--gold-light);
+  font-size: 1.7rem;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    padding: 8px 4%;
+    gap: 0;
+  }
+
+  .brand {
+    order: 1;
+    margin-right: auto;
+    font-size: 1.25rem;
+  }
+
+  .mb {
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+
+  nav {
+    order: 3;
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav.open nav {
+    display: flex;
+  }
+
+  nav a {
+    width: 100%;
+    padding: 12px 0;
+    border-top: 1px solid rgba(232, 211, 160, 0.15);
+    border-bottom: 0;
+  }
 }

@@ -1,5 +1,5 @@
 <!-- HERO SLIDER -->
-<section class="hero">
+<section class="hero" (touchstart)="touchStart($event)" (touchend)="touchEnd($event, 'hero')">
   <div class="track" [style.transform]="transform"
        [style.transition]="animate ? 'transform 0.7s ease' : 'none'"
        (transitionend)="onEnd($event)">
@@ -54,30 +54,35 @@
   </div>
 </section>
 
-<!-- VIDEO CARDS -->
+<!-- VIDEO GALLERY -->
 <section class="sec">
-  <h2 class="reveal">Watch Our Jewellery</h2>
+  <h2 class="reveal">Watch Our Gallery</h2>
   <div class="ln"></div>
-  <div class="vids">
-    <div class="vc v1 reveal">
-      <span class="lb">LIVE</span>
-      <app-symbol name="diamond"></app-symbol>
-      <p class="vt">Diamond 360° View</p>
-      <div class="pb"><i></i></div>
-    </div>
-    <div class="vc v2 reveal" style="animation-delay: 150ms">
-      <span class="lb">LIVE</span>
-      <app-symbol name="necklace"></app-symbol>
-      <p class="vt">Bridal Necklace Shine</p>
-      <div class="pb"><i></i></div>
-    </div>
-    <div class="vc v3 reveal" style="animation-delay: 300ms">
-      <span class="lb">LIVE</span>
-      <app-symbol name="bangle"></app-symbol>
-      <p class="vt">Gold Bangles Spin</p>
-      <div class="pb"><i></i></div>
-    </div>
-  </div>
+  <swiper-container class="vswiper reveal" effect="coverflow" slides-per-view="auto"
+                    centered-slides="true" loop="true" grab-cursor="true" speed="700"
+                    navigation="true" pagination="true" pagination-clickable="true"
+                    autoplay="true" autoplay-delay="3500" autoplay-disable-on-interaction="false"
+                    coverflow-effect-rotate="32" coverflow-effect-stretch="0" coverflow-effect-depth="140"
+                    coverflow-effect-modifier="1" coverflow-effect-slide-shadows="false"
+                    (click)="onGalleryClick($event)">
+    @for (v of videoLoop; track $index; let i = $index) {
+    <swiper-slide class="vs">
+      <div class="vc" [class]="'v' + ((i % videos.length) + 1)" [attr.data-i]="i % videos.length">
+        <span class="lb">{{ v.src ? 'VIDEO' : 'LIVE' }}</span>
+        @if (v.src) {
+        <video class="vfile" [src]="v.src + '#t=0.1'" muted playsinline preload="metadata"
+               (error)="v.src = ''"></video>
+        } @else {
+        <app-symbol [name]="v.symbol"></app-symbol>
+        }
+        <div class="play"><span>▶</span></div>
+        <p class="vt">{{ v.title }}</p>
+        <div class="pb"><i></i></div>
+      </div>
+    </swiper-slide>
+    }
+  </swiper-container>
+  <p class="hint">Tap a video to watch it full screen</p>
 </section>
 
 <!-- COLLECTION -->
@@ -122,18 +127,32 @@
 <section class="sec">
   <h2 class="reveal">Jewellery for Every Occasion</h2>
   <div class="ln"></div>
-  <div class="occ">
-    @for (o of occasions; track o.name; let i = $index) {
-    <div class="oc reveal" [style.--a]="o.a" [style.--b]="o.b"
-         [style.animation-delay.ms]="i * 100" (click)="pick(o.category)">
-      @if (o.image) {
-      <img class="ophoto" [src]="o.image" [alt]="o.name" (error)="o.image = ''">
-      <div class="oshade"></div>
-      } @else {
-      <app-symbol [name]="o.symbol"></app-symbol>
-      }
-      <div class="otxt"><h3>{{ o.name }}</h3><p>{{ o.text }}</p></div>
+  <div class="ovw">
+    <div class="ov" (touchstart)="touchStart($event)" (touchend)="touchEnd($event, 'occ')">
+      <div class="ot" [style.--per]="per" [style.transform]="oTransform"
+           [style.transition]="oanimate ? 'transform 0.6s ease' : 'none'"
+           (transitionend)="onOccEnd($event)">
+        @for (o of occTrack; track $index) {
+        <div class="os">
+          <div class="oc" [style.--a]="o.a" [style.--b]="o.b" (click)="pick(o.category)">
+            @if (o.image) {
+            <img class="ophoto" [src]="o.image" [alt]="o.name" (error)="o.image = ''">
+            <div class="oshade"></div>
+            } @else {
+            <app-symbol [name]="o.symbol"></app-symbol>
+            }
+            <div class="otxt"><h3>{{ o.name }}</h3><p>{{ o.text }}</p></div>
+          </div>
+        </div>
+        }
+      </div>
     </div>
+    <button class="oar left" (click)="oPrev(); startOccAuto()" aria-label="Previous">❮</button>
+    <button class="oar right" (click)="oNext(); startOccAuto()" aria-label="Next">❯</button>
+  </div>
+  <div class="odots">
+    @for (o of occasions; track o.name; let i = $index) {
+    <i [class.on]="i === oDot" (click)="oGo(i)"></i>
     }
   </div>
 </section>
@@ -213,7 +232,9 @@
 <section class="cta reveal">
   <h2>Visit DS Jewellers in Lucknow</h2>
   <p>See the full collection in person, or talk to us right now.</p>
-  <a href="tel:+918874196809" class="btn">📞 Call Now</a>
-  <a href="https://wa.me/918874196809" target="_blank" rel="noopener" class="btn o">WhatsApp</a>
-  <a routerLink="/location" class="btn o">Get Directions</a>
+  <div class="cta-btns">
+    <a href="tel:+918874196809" class="btn">📞 Call Now</a>
+    <a href="https://wa.me/918874196809" target="_blank" rel="noopener" class="btn o">💬 WhatsApp</a>
+    <a routerLink="/location" class="btn o wide">📍 Get Directions</a>
+  </div>
 </section>

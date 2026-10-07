@@ -1,3 +1,31 @@
+:host {
+  display: block;
+}
+
 main {
   min-height: 70vh;
+}
+
+.bbar {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .bbar {
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    z-index: 25;
+    background: var(--maroon-dark);
+    border-top: 2px solid var(--gold);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+    .bbar a {
+      flex: 1;
+      text-align: center;
+      padding: 12px 4px;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+    }
 }

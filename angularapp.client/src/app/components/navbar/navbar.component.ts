@@ -9,6 +9,10 @@ import { WishlistService } from '../../services/wishlist.service';
 })
 export class NavbarComponent {
   shopName = 'DS Jewellers';
+  open = false;
 
   constructor(public wishlist: WishlistService) { }
+
+  toggle(): void { this.open = !this.open; }
+  close(): void { this.open = false; }
 }
